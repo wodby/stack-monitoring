@@ -1,5 +1,6 @@
 name: monitoring
 title: Monitoring
+icon: monitoring
 services:
   - name: cluster-agent
     title: Kubernetes cluster agent
