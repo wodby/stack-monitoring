@@ -4,16 +4,16 @@ icon: metrics
 services:
   - name: cluster-agent
     title: Kubernetes cluster agent
-    service: monitoring-cluster-agent
+    service: cluster-agent
 
   - name: node-agent
     title: Kubernetes node agent
-    service: monitoring-node-agent
+    service: node-agent
 
   - name: node-exporter
     title: Node exporter
-    service: monitoring-node-exporter
+    service: node-exporter
 
   - name: kube-state-metrics
     title: Kubernetes state metrics
-    service: monitoring-kube-state-metrics
+    service: kube-state-metrics
