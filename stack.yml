@@ -2,6 +2,14 @@ name: monitoring
 title: Monitoring
 icon: metrics
 services:
-  - name: monitoring
-    title: Monitoring
-    service: monitoring
+- name: monitoring
+  title: Monitoring
+  service: monitoring
+
+- name: node-exporter
+  title: Node exporter
+  service: node-exporter
+
+- name: kube-state-metrics
+  title: Kubernetes state metrics
+  service: kube-state-metrics
