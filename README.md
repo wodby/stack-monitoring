@@ -1,11 +1,20 @@
-# Monitoring stack for Wodby
+# Monitoring Kubernetes system stack for Wodby
 
-Deploy Monitoring on Kubernetes with Wodby. This repository contains the stack
-manifests used by the public Monitoring stack in the Wodby catalog.
+Monitoring supplies node, workload, and Kubernetes object telemetry for Wodby
+cluster observability.
 
-- [Monitoring stack in the Wodby catalog](https://wodby.com/stacks/monitoring)
+This repository defines the Wodby stack manifests and default service
+composition for Monitoring.
+
+- [Wodby Kubernetes platform](https://wodby.com)
 - [Wodby stack documentation](https://wodby.com/docs/2.0/stacks/)
 - [Stack manifest reference](https://wodby.com/docs/2.0/stacks/template/)
+
+## System service definitions
+
+- [Monitoring system service](https://github.com/wodby/service-monitoring)
+- [Node exporter system service](https://github.com/wodby/service-node-exporter)
+- [Kube state metrics system service](https://github.com/wodby/service-kube-state-metrics)
 
 ## What's included
 
@@ -15,43 +24,29 @@ manifests used by the public Monitoring stack in the Wodby catalog.
 | Node exporter (`node-exporter`)<br>`node-exporter` | optional; enabled by default |
 | Kubernetes state metrics (`kube-state-metrics`)<br>`kube-state-metrics` | optional; enabled by default |
 
-Enabled optional services are selected by default but can be excluded when an
-app is created. Disabled optional services are available but not selected by
-default. Required services cannot be excluded.
+System services are enabled or disabled according to the cluster provider and
+infrastructure configuration.
 
-## Use this stack
+## Role in Wodby infrastructure
 
-The simplest path is to add the public stack from the Wodby catalog. Review the
-enabled services, versions, storage sizes, links, and other defaults when
-creating your app.
+Wodby installs this stack as a cluster-owned system app when it is required by
+the Kubernetes provider or selected infrastructure configuration. It is not a
+template for user-deployed applications.
 
-To maintain your own version of this stack:
+Installation order, enabled services, and settings can vary by cluster type.
+Wodby coordinates its lifecycle with cluster provisioning and infrastructure
+upgrades.
 
-1. Fork this repository.
-2. Edit the stack manifest.
-3. Import the repository as a
-   [Git-backed stack](https://wodby.com/docs/2.0/stacks/create/#create-a-git-backed-stack).
+## Platform maintenance
 
-Wodby imports the manifest from the selected Git branch or tag and creates a new
-stack revision when the Git-backed stack is updated.
+Changes can affect existing clusters. Preserve stack service names and service
+references unless the backend provisioning and upgrade paths are updated at the
+same time.
 
-## Customize the stack
-
-Common changes include selecting different service versions, enabling or
-disabling optional components, changing persistent volume sizes, adjusting
-stack-level environment and workload overrides, or replacing one linked service
-with another compatible service.
-
-When replacing or renaming a stack service, update every corresponding
-`services[].links` target and derivative reference. Stack-local names and
-referenced service names are distinct identifiers and do not need to match.
-
-Validate customized manifests with the Wodby CLI before importing them:
+Wodby platform maintainers can validate the manifests with:
 
 ```bash
 wodby stack validate-manifest stack.yml --org <org-id>
 ```
 
-See the [stack manifest reference](https://wodby.com/docs/2.0/stacks/template/)
-for every supported field and the [managed services
-index](https://github.com/wodby/services) for available service references.
+See the [stack manifest reference](https://wodby.com/docs/2.0/stacks/template/) and the [managed services index](https://github.com/wodby/services).
