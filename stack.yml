@@ -1,6 +1,7 @@
 name: monitoring
 title: Monitoring
 icon: metrics
+docs: https://wodby.com/docs/2.0/stacks/catalog/system/
 services:
 - name: monitoring
   title: Monitoring
